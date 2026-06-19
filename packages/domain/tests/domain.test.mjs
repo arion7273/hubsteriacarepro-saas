@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { assertTenantSlug, createFixtureTenant, isTenantSlug } from '../src/index.js';
+import { assertTenantSlug, createFixturePatient, createFixtureTenant, isTenantSlug } from '../src/index.mjs';
 
 test('validates tenant slugs', () => {
   assert.equal(isTenantSlug('care-team-1'), true);
@@ -8,6 +8,7 @@ test('validates tenant slugs', () => {
   assert.equal(assertTenantSlug('abc'), 'abc');
 });
 
-test('creates tenant fixtures', () => {
+test('creates domain fixtures', () => {
   assert.equal(createFixtureTenant({ slug: 'phase-one' }).slug, 'phase-one');
+  assert.equal(createFixturePatient({ preferredName: 'Casey' }).preferredName, 'Casey');
 });

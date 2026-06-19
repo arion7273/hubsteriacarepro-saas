@@ -2,17 +2,17 @@ import { existsSync, readFileSync } from 'node:fs';
 
 const required = [
   'package.json',
-  'tsconfig.base.json',
   '.env.example',
   '.github/workflows/ci.yml',
   'apps/api/package.json',
-  'apps/api/src/server.ts',
+  'apps/api/src/server.mjs',
   'apps/api/Dockerfile',
   'apps/web/package.json',
-  'apps/web/src/App.tsx',
+  'apps/web/index.html',
+  'apps/web/src/main.mjs',
   'apps/web/Dockerfile',
   'packages/domain/package.json',
-  'packages/domain/src/index.ts',
+  'packages/domain/src/index.mjs',
   'tests/fixtures/sample-care-team.json',
   'infra/db/migrations/0001_initial.sql',
   'infra/render/render.yaml',
@@ -41,6 +41,12 @@ for (const table of ['tenants', 'users', 'patients', 'care_plans', 'audit_events
     console.error(`Initial migration must create ${table}`);
     process.exit(1);
   }
+}
+
+const rootPackage = JSON.parse(readFileSync('package.json', 'utf8'));
+if (rootPackage.dependencies || rootPackage.devDependencies) {
+  console.error('Root scaffold must remain dependency-free for Phase 1 validation.');
+  process.exit(1);
 }
 
 console.log('Scaffold validation passed.');

@@ -4,9 +4,9 @@ Phase 1 monorepo scaffold for HubsteriaCarePro, a care operations SaaS for multi
 
 ## What is included
 
-- `apps/api`: TypeScript Fastify API service with health, tenant, patient, care plan, and audit routes.
-- `apps/web`: TypeScript Vite/React web application shell for tenant dashboards.
-- `packages/domain`: Shared domain types, validation helpers, and fixture factories.
+- `apps/api`: Dependency-free Node.js API service with health, tenant, patient, care plan, and audit routes.
+- `apps/web`: Dependency-free web application shell for tenant dashboards.
+- `packages/domain`: Shared domain constants, validation helpers, and fixture factories.
 - `infra/db/migrations`: Initial PostgreSQL schema with tenant isolation primitives.
 - `infra/render`: Render blueprint for web, API, and managed PostgreSQL deployment.
 - `.github/workflows`: CI checks for scaffold validation, typecheck, tests, and builds.
@@ -17,6 +17,7 @@ Phase 1 monorepo scaffold for HubsteriaCarePro, a care operations SaaS for multi
 
 - Node.js 20+
 - npm 10+
+- No runtime npm registry access is required for the Phase 1 scaffold
 - PostgreSQL 16+ for local database-backed API development
 
 ## Quick start
@@ -24,6 +25,7 @@ Phase 1 monorepo scaffold for HubsteriaCarePro, a care operations SaaS for multi
 ```bash
 npm install
 npm run validate:scaffold
+npm run lint
 npm run typecheck
 npm test
 npm run build

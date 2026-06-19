@@ -2,14 +2,9 @@
   "name": "@hubsteriacarepro/domain",
   "version": "0.1.0",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.mjs",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "test": "node --test dist/tests/*.test.js",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
-  },
-  "devDependencies": {
-    "typescript": "^5.5.0"
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs"
   }
 }

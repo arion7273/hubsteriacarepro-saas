@@ -1,1 +1,27 @@
-<div id="root"></div><script type="module" src="/src/main.tsx"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HubsteriaCarePro</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card" aria-labelledby="page-title">
+        <p class="eyebrow">HubsteriaCarePro Phase 1</p>
+        <h1 id="page-title">Care operations command center</h1>
+        <p>
+          A secure multi-tenant workspace for patient intake, care plan tracking,
+          team coordination, and audit-ready operations.
+        </p>
+        <dl>
+          <div><dt>Tenant</dt><dd id="tenant-name">Loading…</dd></div>
+          <div><dt>Status</dt><dd id="tenant-status">Loading…</dd></div>
+          <div><dt>API</dt><dd id="api-base">http://localhost:3000</dd></div>
+        </dl>
+      </section>
+    </main>
+    <script type="module" src="./src/main.mjs"></script>
+  </body>
+</html>

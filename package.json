@@ -10,10 +10,10 @@
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
-    "dev": "npm run dev --workspace @hubsteriacarepro/api & npm run dev --workspace @hubsteriacarepro/web",
-    "lint": "npm run lint --workspaces --if-present",
+    "dev": "node scripts/dev.mjs",
+    "lint": "node scripts/lint.mjs",
     "test": "npm run test --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck": "node scripts/typecheck.mjs",
     "validate:scaffold": "node scripts/validate-scaffold.mjs"
   },
   "engines": {
