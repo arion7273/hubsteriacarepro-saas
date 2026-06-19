@@ -1,0 +1,23 @@
+{
+  "name": "hubsteriacarepro-saas",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Phase 1 SaaS scaffold for HubsteriaCarePro care operations.",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev": "npm run dev --workspace @hubsteriacarepro/api & npm run dev --workspace @hubsteriacarepro/web",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "validate:scaffold": "node scripts/validate-scaffold.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
