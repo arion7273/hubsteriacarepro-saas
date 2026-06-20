@@ -23,3 +23,10 @@ test('creates domain fixtures', () => {
   assert.equal(createFixtureTask({ priority: 'urgent' }).priority, 'urgent');
   assert.equal(createDashboardSummary({ openTasks: 3 }).openTasks, 3);
 });
+
+test('dashboard active patient count matches launch fixture', () => {
+  const patient = createFixturePatient();
+  const summary = createDashboardSummary();
+  assert.equal(patient.status, 'active');
+  assert.equal(summary.activePatients, 1);
+});
