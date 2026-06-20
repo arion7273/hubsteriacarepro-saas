@@ -31,3 +31,20 @@ test('tenant endpoint returns fixture tenant', async () => {
     assert.equal((await response.json()).slug, 'hubsteria-demo');
   });
 });
+
+
+test('care planning endpoints return launch fixtures', async () => {
+  await withServer(async (baseUrl) => {
+    const summaryResponse = await fetch(`${baseUrl}/v1/dashboard-summary`);
+    assert.equal(summaryResponse.status, 200);
+    assert.equal((await summaryResponse.json()).activeCarePlans, 1);
+
+    const carePlansResponse = await fetch(`${baseUrl}/v1/care-plans`);
+    assert.equal(carePlansResponse.status, 200);
+    assert.equal((await carePlansResponse.json()).data[0].title, 'Post-discharge stabilization');
+
+    const tasksResponse = await fetch(`${baseUrl}/v1/tasks`);
+    assert.equal(tasksResponse.status, 200);
+    assert.equal((await tasksResponse.json()).data[0].priority, 'high');
+  });
+});

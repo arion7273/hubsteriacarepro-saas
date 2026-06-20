@@ -21,6 +21,29 @@
           <div><dt>API</dt><dd id="api-base">http://localhost:3000</dd></div>
         </dl>
       </section>
+
+      <section class="dashboard-grid" aria-label="Operational dashboard preview">
+        <article class="metric-card">
+          <span id="active-patients">1</span>
+          <p>Active patients</p>
+        </article>
+        <article class="metric-card">
+          <span id="active-care-plans">1</span>
+          <p>Active care plans</p>
+        </article>
+        <article class="metric-card">
+          <span id="open-tasks">1</span>
+          <p>Open tasks</p>
+        </article>
+      </section>
+
+      <section class="worklist-card" aria-labelledby="worklist-title">
+        <p class="eyebrow">Next launch slice</p>
+        <h2 id="worklist-title">Today’s coordinated care worklist</h2>
+        <ul id="worklist">
+          <li>Loading care coordination tasks…</li>
+        </ul>
+      </section>
     </main>
     <script type="module" src="./src/main.mjs"></script>
   </body>
