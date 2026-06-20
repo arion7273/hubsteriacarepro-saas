@@ -1,0 +1,37 @@
+{
+  "tenantHeader": "tenant_01HUBSTERIA",
+  "actorHeader": "user_admin_001",
+  "idempotencyKey": "idem_shift_001",
+  "residentWorkflows": [
+    {
+      "residentId": "resident_001",
+      "expectedCarePlanIds": ["care_plan_001"],
+      "expectedOpenTaskIds": ["task_001"]
+    },
+    {
+      "residentId": "resident_002",
+      "expectedCarePlanIds": ["care_plan_002"],
+      "expectedOpenTaskIds": ["task_002"],
+      "expectedIncidentIds": ["incident_001"]
+    }
+  ],
+  "handoffExpectations": {
+    "route": "/v1/mobile/handoff",
+    "expectedHandoffIds": ["handoff_001"],
+    "expectedIncidentIds": ["incident_001"]
+  },
+  "syncExpectations": {
+    "pushRoute": "/v1/sync/push",
+    "statusRoute": "/v1/sync/status",
+    "replayField": "idempotentReplay"
+  },
+  "auditExpectations": [
+    "tenant.accessed",
+    "resident.viewed",
+    "care_plan.viewed",
+    "task.updated",
+    "handoff.created",
+    "incident.reported",
+    "sync.applied"
+  ]
+}

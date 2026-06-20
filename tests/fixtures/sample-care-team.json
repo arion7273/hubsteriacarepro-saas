@@ -1,0 +1,16 @@
+{
+  "tenant": {
+    "id": "tenant_01HUBSTERIA",
+    "name": "Hubsteria Care Demo",
+    "slug": "hubsteria-demo",
+    "status": "trial"
+  },
+  "members": [
+    {
+      "id": "user_admin_001",
+      "email": "admin@example.test",
+      "displayName": "Avery Admin",
+      "roles": ["owner", "administrator"]
+    }
+  ]
+}

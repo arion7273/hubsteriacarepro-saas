@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HubsteriaCarePro</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card" aria-labelledby="page-title">
+        <p class="eyebrow">HubsteriaCarePro Phase 2</p>
+        <h1 id="page-title">Mobile-first care operations</h1>
+        <p>
+          Tenant-aware resident workflows, care plans, shift tasks, and audit-ready
+          activity trails for care coordinators on the floor.
+        </p>
+        <dl>
+          <div><dt>Tenant</dt><dd id="tenant-name">Loading…</dd></div>
+          <div><dt>Residents</dt><dd id="resident-count">0</dd></div>
+          <div><dt>Open tasks</dt><dd id="task-count">0</dd></div>
+          <div><dt>Incidents</dt><dd id="incident-count">0</dd></div>
+        </dl>
+      </section>
+
+      <section class="mobile-board" aria-labelledby="workflow-title">
+        <div>
+          <p class="eyebrow">Today</p>
+          <h2 id="workflow-title">Shift workflow</h2>
+        </div>
+        <ol id="workflow-list"></ol>
+        <div class="sync-card">
+          <strong>Offline sync</strong>
+          <span id="sync-status">Waiting for idempotent sync cursor…</span>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./src/main.mjs"></script>
+  </body>
+</html>
