@@ -1,0 +1,10 @@
+{
+  "name": "@hubsteriacarepro/web",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs"
+  }
+}
