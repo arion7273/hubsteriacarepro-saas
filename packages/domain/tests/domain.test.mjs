@@ -1,6 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { assertTenantSlug, createFixturePatient, createFixtureTenant, isTenantSlug } from '../src/index.mjs';
+import {
+  assertTenantSlug,
+  createDashboardSummary,
+  createFixtureCarePlan,
+  createFixturePatient,
+  createFixtureTask,
+  createFixtureTenant,
+  isTenantSlug
+} from '../src/index.mjs';
 
 test('validates tenant slugs', () => {
   assert.equal(isTenantSlug('care-team-1'), true);
@@ -11,4 +19,14 @@ test('validates tenant slugs', () => {
 test('creates domain fixtures', () => {
   assert.equal(createFixtureTenant({ slug: 'phase-one' }).slug, 'phase-one');
   assert.equal(createFixturePatient({ preferredName: 'Casey' }).preferredName, 'Casey');
+  assert.equal(createFixtureCarePlan({ status: 'needs_review' }).status, 'needs_review');
+  assert.equal(createFixtureTask({ priority: 'urgent' }).priority, 'urgent');
+  assert.equal(createDashboardSummary({ openTasks: 3 }).openTasks, 3);
+});
+
+test('dashboard active patient count matches launch fixture', () => {
+  const patient = createFixturePatient();
+  const summary = createDashboardSummary();
+  assert.equal(patient.status, 'active');
+  assert.equal(summary.activePatients, 1);
 });

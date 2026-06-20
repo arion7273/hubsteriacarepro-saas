@@ -1,5 +1,11 @@
 import { createServer } from 'node:http';
-import { createFixturePatient, createFixtureTenant } from '@hubsteriacarepro/domain';
+import {
+  createDashboardSummary,
+  createFixtureCarePlan,
+  createFixturePatient,
+  createFixtureTask,
+  createFixtureTenant
+} from '@hubsteriacarepro/domain';
 
 const jsonHeaders = {
   'content-type': 'application/json; charset=utf-8',
@@ -24,12 +30,20 @@ export function routeRequest(request, response) {
     return sendJson(response, 200, createFixtureTenant());
   }
 
+  if (request.method === 'GET' && url.pathname === '/v1/dashboard-summary') {
+    return sendJson(response, 200, createDashboardSummary());
+  }
+
   if (request.method === 'GET' && url.pathname === '/v1/patients') {
     return sendJson(response, 200, { data: [createFixturePatient()] });
   }
 
   if (request.method === 'GET' && url.pathname === '/v1/care-plans') {
-    return sendJson(response, 200, { data: [] });
+    return sendJson(response, 200, { data: [createFixtureCarePlan()] });
+  }
+
+  if (request.method === 'GET' && url.pathname === '/v1/tasks') {
+    return sendJson(response, 200, { data: [createFixtureTask()] });
   }
 
   if (request.method === 'POST' && url.pathname === '/v1/audit-events') {
