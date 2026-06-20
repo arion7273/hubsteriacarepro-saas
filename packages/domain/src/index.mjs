@@ -32,7 +32,7 @@ export function createFixturePatient(overrides = {}) {
     tenantId: 'tenant_01HUBSTERIA',
     medicalRecordNumber: 'MRN-0001',
     preferredName: 'Jordan Patient',
-    status: 'intake',
+    status: 'active',
     dateOfBirth: '1980-01-01',
     riskLevel: 'moderate',
     primaryCoordinator: 'Alex Clinician',
