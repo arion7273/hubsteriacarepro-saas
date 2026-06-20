@@ -14,7 +14,9 @@ const worklist = [
     dueDate: '2026-06-24'
   }
 ];
-const apiBaseUrl = globalThis.HUBSTERIA_API_BASE_URL ?? 'http://localhost:3000';
+const apiBaseUrl =
+  globalThis.HUBSTERIA_API_BASE_URL ??
+  (globalThis.location?.hostname?.endsWith('onrender.com') ? 'https://hubsteriacarepro-api.onrender.com' : 'http://localhost:3000');
 
 function setText(id, value) {
   document.getElementById(id).textContent = value;
