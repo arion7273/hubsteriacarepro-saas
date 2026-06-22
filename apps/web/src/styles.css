@@ -11,3 +11,9 @@ h1 { font-size: clamp(2.4rem, 6vw, 4.8rem); line-height: 1; margin: 0 0 1rem; }
 dl { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin-top: 2rem; }
 dt { color: #607080; font-size: .8rem; text-transform: uppercase; }
 dd { margin: .25rem 0 0; font-weight: 700; }
+
+.dashboard-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 2rem; }
+.dashboard-grid article { background: #f6fbfb; border: 1px solid #d7e8e6; border-radius: 18px; padding: 1rem; }
+h2 { font-size: 1rem; margin: 0 0 .75rem; }
+ul { margin: 0; padding-left: 1.25rem; color: #30465a; }
+li + li { margin-top: .5rem; }

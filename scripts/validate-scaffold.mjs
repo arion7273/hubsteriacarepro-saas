@@ -6,6 +6,7 @@ const required = [
   '.github/workflows/ci.yml',
   'apps/api/package.json',
   'apps/api/src/server.mjs',
+  'apps/api/src/repositories/postgres.mjs',
   'apps/api/Dockerfile',
   'apps/web/package.json',
   'apps/web/index.html',
@@ -15,6 +16,7 @@ const required = [
   'packages/domain/src/index.mjs',
   'tests/fixtures/sample-care-team.json',
   'infra/db/migrations/0001_initial.sql',
+  'infra/db/migrations/0002_care_plan_status.sql',
   'infra/render/render.yaml',
   'docs/security/security-baseline.md',
   'docs/runbooks/incident-response.md',
@@ -39,6 +41,14 @@ const migration = readFileSync('infra/db/migrations/0001_initial.sql', 'utf8');
 for (const table of ['tenants', 'users', 'patients', 'care_plans', 'audit_events']) {
   if (!migration.includes(`CREATE TABLE ${table}`)) {
     console.error(`Initial migration must create ${table}`);
+    process.exit(1);
+  }
+}
+
+const carePlanMigration = readFileSync('infra/db/migrations/0002_care_plan_status.sql', 'utf8');
+for (const phrase of ['ADD COLUMN status', 'care_plans_tenant_status_idx']) {
+  if (!carePlanMigration.includes(phrase)) {
+    console.error(`Care plan status migration must include ${phrase}`);
     process.exit(1);
   }
 }

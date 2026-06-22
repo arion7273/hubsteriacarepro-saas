@@ -1,6 +1,7 @@
 export const TENANT_STATUSES = ['trial', 'active', 'suspended'];
 export const CARE_ROLES = ['owner', 'administrator', 'clinician', 'care_coordinator', 'billing'];
 export const PATIENT_STATUSES = ['intake', 'active', 'discharged'];
+export const CARE_PLAN_STATUSES = ['draft', 'active', 'completed'];
 
 export function isTenantSlug(value) {
   return typeof value === 'string' && /^[a-z0-9][a-z0-9-]{2,62}$/.test(value);
@@ -9,6 +10,24 @@ export function isTenantSlug(value) {
 export function assertTenantSlug(value) {
   if (!isTenantSlug(value)) {
     throw new Error('Tenant slug must be 3-63 lowercase letters, numbers, or hyphens.');
+  }
+  return value;
+}
+
+export function isKnownStatus(value, allowedStatuses) {
+  return allowedStatuses.includes(value);
+}
+
+export function assertPatientStatus(value) {
+  if (!isKnownStatus(value, PATIENT_STATUSES)) {
+    throw new Error(`Patient status must be one of: ${PATIENT_STATUSES.join(', ')}.`);
+  }
+  return value;
+}
+
+export function assertCarePlanStatus(value) {
+  if (!isKnownStatus(value, CARE_PLAN_STATUSES)) {
+    throw new Error(`Care plan status must be one of: ${CARE_PLAN_STATUSES.join(', ')}.`);
   }
   return value;
 }
@@ -32,6 +51,22 @@ export function createFixturePatient(overrides = {}) {
     preferredName: 'Jordan Patient',
     status: 'intake',
     dateOfBirth: '1980-01-01',
+    createdAt: '2026-01-02T00:00:00.000Z',
+    ...overrides
+  };
+}
+
+export function createFixtureCarePlan(overrides = {}) {
+  return {
+    id: 'care_plan_001',
+    tenantId: 'tenant_01HUBSTERIA',
+    patientId: 'patient_001',
+    title: 'Initial care coordination plan',
+    status: 'active',
+    goals: [
+      { id: 'goal_001', description: 'Complete intake assessment', status: 'active' }
+    ],
+    updatedAt: '2026-01-03T00:00:00.000Z',
     ...overrides
   };
 }

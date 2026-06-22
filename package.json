@@ -2,7 +2,7 @@
   "name": "hubsteriacarepro-saas",
   "version": "0.1.0",
   "private": true,
-  "description": "Phase 1 SaaS scaffold for HubsteriaCarePro care operations.",
+  "description": "Phase 4 SaaS foundation for HubsteriaCarePro care operations.",
   "type": "module",
   "workspaces": [
     "apps/*",

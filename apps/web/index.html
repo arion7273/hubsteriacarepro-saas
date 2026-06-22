@@ -9,7 +9,7 @@
   <body>
     <main class="app-shell">
       <section class="hero-card" aria-labelledby="page-title">
-        <p class="eyebrow">HubsteriaCarePro Phase 1</p>
+        <p class="eyebrow">HubsteriaCarePro Phase 2</p>
         <h1 id="page-title">Care operations command center</h1>
         <p>
           A secure multi-tenant workspace for patient intake, care plan tracking,
@@ -20,8 +20,19 @@
           <div><dt>Status</dt><dd id="tenant-status">Loading…</dd></div>
           <div><dt>API</dt><dd id="api-base">http://localhost:3000</dd></div>
         </dl>
+        <section class="dashboard-grid" aria-label="Care operations overview">
+          <article>
+            <h2>Patients</h2>
+            <ul id="patient-list"><li>Loading…</li></ul>
+          </article>
+          <article>
+            <h2>Care plans</h2>
+            <ul id="care-plan-list"><li>Loading…</li></ul>
+          </article>
+        </section>
       </section>
     </main>
+    <script src="./src/config.js"></script>
     <script type="module" src="./src/main.mjs"></script>
   </body>
 </html>

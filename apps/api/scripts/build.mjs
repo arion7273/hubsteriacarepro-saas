@@ -1,5 +1,6 @@
-import { cp, mkdir } from 'node:fs/promises';
+import { cp, mkdir, rm } from 'node:fs/promises';
 
-await mkdir('dist/src', { recursive: true });
-await cp('src/server.mjs', 'dist/src/server.mjs');
+await rm('dist', { recursive: true, force: true });
+await mkdir('dist', { recursive: true });
+await cp('src', 'dist/src', { recursive: true });
 console.log('Built @hubsteriacarepro/api');
