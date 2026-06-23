@@ -100,6 +100,20 @@ test('rejects invalid patient payloads', async () => {
   });
 });
 
+test('rejects non-object JSON request bodies', async () => {
+  await withServer(async (baseUrl) => {
+    const response = await fetch(`${baseUrl}/v1/patients`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: 'null'
+    });
+    const body = await response.json();
+    assert.equal(response.status, 400);
+    assert.equal(body.error, 'bad_request');
+    assert.equal(body.message, 'Request body must be a JSON object.');
+  });
+});
+
 test('returns not found for care plans with unknown tenant patient', async () => {
   await withServer(async (baseUrl) => {
     const response = await fetch(`${baseUrl}/v1/care-plans`, {
@@ -136,9 +150,21 @@ test('records manual and automatic audit events', async () => {
   });
 });
 
-
 test('constructs postgres repository driver without connecting during setup', () => {
   const repository = createRepository({ driver: 'postgres', databaseUrl: 'postgres://example@example.com/example' });
   assert.equal(typeof repository.getTenantBySlug, 'function');
   assert.equal(typeof repository.addPatient, 'function');
+});
+
+test('selects postgres repository when DATABASE_URL is configured', () => {
+  const previous = process.env.DATABASE_URL;
+  process.env.DATABASE_URL = 'postgres://example@example.com/example';
+  try {
+    const repository = createRepository();
+    assert.equal(typeof repository.getTenantBySlug, 'function');
+    assert.equal(typeof repository.addPatient, 'function');
+  } finally {
+    if (previous === undefined) delete process.env.DATABASE_URL;
+    else process.env.DATABASE_URL = previous;
+  }
 });
