@@ -36,11 +36,18 @@ async function readJsonBody(request) {
   for await (const chunk of request) chunks.push(chunk);
   if (!chunks.length) return {};
 
+  let parsed;
   try {
-    return JSON.parse(Buffer.concat(chunks).toString('utf8'));
+    parsed = JSON.parse(Buffer.concat(chunks).toString('utf8'));
   } catch {
     throw badRequest('Request body must be valid JSON.');
   }
+
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw badRequest('Request body must be a JSON object.');
+  }
+
+  return parsed;
 }
 
 function requireString(payload, field) {
